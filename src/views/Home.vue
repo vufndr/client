@@ -6,13 +6,23 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import axios from 'axios';
 import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'Home',
   components: {
     HelloWorld
+  },
+  mounted() {
+    this.login();
+  },
+  methods: {
+    login() {
+      axios.get('/sanctum/csrf-cookie').then(() => {
+          // Login...
+      });
+    }
   }
 }
 </script>

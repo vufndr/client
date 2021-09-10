@@ -1,26 +1,23 @@
 <template>
   <div style="padding-top: 65px;">
-    <ui-grid>
-      <ui-grid-cell columns="2">
-        <ui-card>
-          <ui-card-content>
-            <ui-card-media square class="demo-card__media">
-              <ui-card-media-content class="demo-card__media-content--with-title">
-              </ui-card-media-content>
-            </ui-card-media>
-          </ui-card-content>
-        </ui-card>
-      </ui-grid-cell>
-    </ui-grid>
+    Login
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-  name: 'Home',
+  name: 'Login',
   mounted() {
+    this.login();
   },
   methods: {
+    login() {
+      axios.get('/sanctum/csrf-cookie').then(() => {
+          // Login...
+      });
+    }
   }
 }
 </script>

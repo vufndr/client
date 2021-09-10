@@ -9,7 +9,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-axios.defaults.baseURL = 'http://localhost';
+axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 axios.defaults.withCredentials = true;
 
 createApp(App)

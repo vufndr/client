@@ -11,8 +11,13 @@
         </ui-textfield>
       </div>
       <div class="m-2">
-        <ui-button class="w-full" raised @click="login">
-          Login
+        <ui-textfield input-type="password" fullwidth v-model="confirmPassword">
+          Confirm Password
+        </ui-textfield>
+      </div>
+      <div class="m-2">
+        <ui-button class="w-full" raised @click="register">
+          Register
         </ui-button>
       </div>
   </div>
@@ -23,25 +28,23 @@ import axios from 'axios';
 import { mapActions } from 'vuex';
 
 export default {
-  name: 'Login',
+  name: 'Register',
   data() {
     return {
-      email: 'test@example.com',
-      password: 'password',
     }
   },
   mounted() {
   },
   methods: {
     ...mapActions(['authenticate']),
-    login() {
+    register() {
       axios.get('/sanctum/csrf-cookie').then(() => {
-        axios.post('/login', {
+        axios.post('/register', {
           email: this.email,
           password: this.password,
-        }).then(() => {
+        }).then((response) => {
+          console.log(response);
           this.authenticate();
-          this.$router.push({ name: 'search' });
         });
       });
     }

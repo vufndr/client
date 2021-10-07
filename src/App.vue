@@ -1,20 +1,32 @@
 <template>
   <div class="demo-container">
+
     <!-- Drawer -->
     <ui-drawer type="modal" nav-id="demo-menu">
       <ui-drawer-header>
-        <ui-drawer-title>Title</ui-drawer-title>
-        <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
+        <ui-drawer-title>VUFNDER</ui-drawer-title>
+        <ui-drawer-subtitle>Image Search</ui-drawer-subtitle>
       </ui-drawer-header>
       <ui-drawer-content>
         <ui-nav>
-          <ui-nav-item href="javascript:void(0)" active>Item {{ 0 }}</ui-nav-item>
-          <ui-nav-item v-for="i in 12" :key="i" href="javascript:void(0)">
-            Item {{ i }}
-          </ui-nav-item>
+          <router-link
+            to="/dashboard"
+            custom
+            v-slot="{ href, navigate, isActive }"
+          >
+            <ui-nav-item :href="href" :active="isActive" @click="navigate">Dashboard</ui-nav-item>
+          </router-link>
+          <router-link
+            to="/search"
+            custom
+            v-slot="{ href, navigate, isActive }"
+          >
+            <ui-nav-item :href="href" :active="isActive" @click="navigate">Search</ui-nav-item>
+          </router-link>
         </ui-nav>
       </ui-drawer-content>
     </ui-drawer>
+
     <!-- Content -->
     <div class="demo-content">
       <!-- App bar -->
@@ -25,6 +37,18 @@
         nav-id="demo-menu"
       >
         VUFNDR
+        <template #toolbar="{ toolbarItemClass }">
+          <ui-menu-anchor absolute>
+            <ui-icon-button :class="toolbarItemClass" icon="account_circle" @click="open = true"></ui-icon-button>
+            <ui-menu
+              v-model="open"
+              :position="'BOTTOM_START'"
+              :items="items"
+              @selected="onSelected"
+            >
+            </ui-menu>
+          </ui-menu-anchor>
+        </template>
       </ui-top-app-bar>
       <!-- App content -->
       <div class="demo-app-content">
@@ -33,6 +57,54 @@
     </div>
   </div>
 </template>
+
+<script>
+import { mapState } from 'vuex';
+
+export default {
+  data() {
+    return {
+      open: false,
+      authenticatedItems: [
+        {
+          value: 'logout',
+          text: 'Logout',
+        },
+        '-',
+        {
+          value: 'help',
+          text: 'Help & Feedback',
+        },
+        {
+          value: 'settings',
+          text: 'Settings',
+        },
+      ],
+      unauthenticatedItems: [
+        {
+          value: 'login',
+          text: 'Login',
+        },
+        {
+          value: 'register',
+          text: 'Register',
+        },
+      ],
+    }
+  },
+  computed: {
+    ...mapState(['authenticated']),
+    items() {
+      return this.authenticated ? this.authenticatedItems : this.unauthenticatedItems;
+    },
+  },
+  methods: {
+    onSelected(data) {
+      this.$router.push({ name: data.value })
+    },
+  }
+}
+</script>
 
 <style>
 html, body, div, span, applet, object, iframe,

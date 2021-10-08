@@ -57,6 +57,7 @@ export default {
           text: 'Dropbox',
         }
       ],
+      authorizationUrl: null,
     };
   },
   computed: {
@@ -65,11 +66,20 @@ export default {
     },
   },
   mounted() {
+    this.oauth();
   },
   methods: {
+    oauth() {
+      axios.get('/api/oauth/dropbox')
+        .then((response) => {
+          this.authorizationUrl = response.authorization_url;
+          console.log(this.authorizationUrl);
+        });
+    },
     redirectToDropbox() {
-      window.location.href = 'https://www.dropbox.com/oauth2/authorize?client_id=uaqnqcv23atv4qm&redirect_uri=https://vufndr.com/oauth/dropbox&response_type=code';
-    }
+        window.location.href = this.authorizationUrl;
+      }
+    },
   }
 }
 </script>

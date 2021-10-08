@@ -7,8 +7,18 @@
 export default {
   name: 'Dropbox',
   mounted() {
-    console.log(this.$route.query.code);
-    this.$router.push({ name: 'settings' });
+    this.oauth();
   },
+  methods: {
+    oauth() {
+      axios.post('/api/oauth/dropbox', {
+        code: this.$route.query.code,
+        state: this.$route.query.state,
+      })
+        .then((response) => {
+          this.$router.push({ name: 'settings' });
+        });
+    },
+  }
 }
 </script>

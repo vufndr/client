@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     redirectToDropbox() {
-      window.location.href = 'https://www.dropbox.com/oauth2/authorize?client_id=uaqnqcv23atv4qm&redirect_uri=https://vufndr.com/settings&response_type=code';
+      window.location.href = 'https://www.dropbox.com/oauth2/authorize?client_id=uaqnqcv23atv4qm&redirect_uri=https://vufndr.com/oauth/dropbox&response_type=code';
     }
   }
 }

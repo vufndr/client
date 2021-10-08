@@ -10,6 +10,9 @@ import Register from '@/views/Register.vue'
 import Search from '@/views/Search.vue'
 import Settings from '@/views/Settings.vue'
 
+
+import Dropbox from '@/views/oauth/Dropbox.vue'
+
 const routes = [
   {
     path: '/register',
@@ -42,6 +45,14 @@ const routes = [
       auth: false
     },
     component: About,
+  },
+  {
+    path: '/oauth/dropbox',
+    name: 'dropbox',
+    component: Dropbox,
+    meta: {
+      auth: true
+    },
   },
   {
     path: '/logout',

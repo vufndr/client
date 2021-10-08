@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { Icon } from '@iconify/vue';
 
 export default {

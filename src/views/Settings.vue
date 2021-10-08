@@ -73,7 +73,7 @@ export default {
     oauth() {
       axios.get('/api/oauth/dropbox')
         .then((response) => {
-          this.authorizationUrl = response.authorization_url;
+          this.authorizationUrl = response.data.authorization_url;
           console.log(this.authorizationUrl);
         });
     },

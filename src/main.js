@@ -13,6 +13,11 @@ axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 axios.defaults.withCredentials = true;
 axios.interceptors.response
     .use((response) => response, (error) => {
+        if (error.response.status === 401) {
+            store.dispatch('unauthenticate');
+            router.push({ name: 'login'});
+            return
+        }
         if (error.response.status === 419) {
             store.dispatch('unauthenticate');
             router.push({ name: 'login'});

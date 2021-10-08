@@ -17,7 +17,7 @@ export default {
         code: this.$route.query.code,
         state: this.$route.query.state,
       })
-        .then((response) => {
+        .then(() => {
           this.$router.push({ name: 'settings' });
         });
     },

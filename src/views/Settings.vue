@@ -77,8 +77,7 @@ export default {
         });
     },
     redirectToDropbox() {
-        window.location.href = this.authorizationUrl;
-      }
+      window.location.href = this.authorizationUrl;
     },
   }
 }

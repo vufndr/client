@@ -7,7 +7,7 @@
 export default {
   name: 'Dropbox',
   mounted() {
-    console.log(this.$route.params);
+    console.log(this.$route.params.code);
     this.$router.push({ name: 'settings' });
   },
 }

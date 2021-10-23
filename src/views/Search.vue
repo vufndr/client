@@ -1,10 +1,10 @@
 <template>
   <div>
     <ui-grid>
-      <ui-grid-cell columns="2">
+      <ui-grid-cell columns="2" v-for="image in images" :key="image">
         <ui-card>
           <ui-card-content>
-            <ui-card-media square class="demo-card__media">
+            <ui-card-media square class="demo-card__media" v-bind:style="{ 'background-image': 'url(' + image.thumbnail_url + ')' }">
               <ui-card-media-content class="demo-card__media-content--with-title">
               </ui-card-media-content>
             </ui-card-media>
@@ -20,6 +20,12 @@ import axios from 'axios';
 
 export default {
   name: 'Search',
+  data() {
+    return {
+      facets: [],
+      images: [],
+    }
+  },
   mounted() {
     this.search();
   },
@@ -27,7 +33,8 @@ export default {
     search() {
       axios.get('/api/search', { params: { resolution: '3000x2006' } })
         .then((response) => {
-          console.log(response);
+          this.facets = response.data.facets;
+          this.images = response.data.data;
         });
     },
   }
@@ -35,10 +42,6 @@ export default {
 </script>
 
 <style>
-.demo-card__media {
-  background-image: url('https://picsum.photos/200');
-}
-
 .demo-card__media-content--with-title {
   display: flex;
   flex-direction: column;

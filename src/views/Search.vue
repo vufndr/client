@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     search() {
-      axios.get('/api/search', { params: { resolution: '3000x2006' } })
+      axios.get('/api/search', { params: { } })
         .then((response) => {
           this.facets = response.data.facets;
           this.images = response.data.data;

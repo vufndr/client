@@ -19,8 +19,15 @@
 export default {
   name: 'Search',
   mounted() {
+    this.search();
   },
   methods: {
+    search() {
+      axios.get('/api/search')
+        .then((response) => {
+          console.log(response);
+        });
+    },
   }
 }
 </script>

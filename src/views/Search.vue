@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     search() {
-      axios.get('/api/search')
+      axios.get('/api/search', { params: { resolution: '3000x2006' } })
         .then((response) => {
           console.log(response);
         });

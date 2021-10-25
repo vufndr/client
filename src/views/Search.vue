@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     search() {
-      axios.get('/api/search', { params: { resolutions } })
+      axios.get('/api/search', { params: { resolutions: this.resolutions } })
         .then((response) => {
           this.facets = response.data.facets;
           this.images = response.data.data;

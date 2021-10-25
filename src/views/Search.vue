@@ -1,28 +1,32 @@
 <template>
-  <div>
-  <ui-list role="group">
-    <ui-item v-for="item in items" :key="item">
-      <ui-item-text-content>{{ item.text }}</ui-item-text-content>
-      <ui-item-last-content>
-        <ui-checkbox
-          v-model="checkedValues"
-          :value="item.value"
-        ></ui-checkbox>
-      </ui-item-last-content>
-    </ui-item>
-  </ui-list>
-    <ui-grid>
-      <ui-grid-cell columns="2" v-for="image in images" :key="image">
-        <ui-card>
-          <ui-card-content>
-            <ui-card-media square class="demo-card__media" v-bind:style="{ 'background-image': 'url(' + image.thumbnail_url + ')' }">
-              <ui-card-media-content class="demo-card__media-content--with-title">
-              </ui-card-media-content>
-            </ui-card-media>
-          </ui-card-content>
-        </ui-card>
-      </ui-grid-cell>
-    </ui-grid>
+  <div class="flex">
+    <div class="flex-none p-4 w-1/3">
+      <ui-list role="group">
+        <ui-item v-for="item in items" :key="item">
+          <ui-item-text-content>{{ item.text }}</ui-item-text-content>
+          <ui-item-last-content>
+            <ui-checkbox
+              v-model="checkedValues"
+              :value="item.value"
+            ></ui-checkbox>
+          </ui-item-last-content>
+        </ui-item>
+      </ui-list>
+    </div>
+    <div class="flex-1 p-4">
+      <ui-grid>
+        <ui-grid-cell columns="2" v-for="image in images" :key="image">
+          <ui-card>
+            <ui-card-content>
+              <ui-card-media square class="demo-card__media" v-bind:style="{ 'background-image': 'url(' + image.thumbnail_url + ')' }">
+                <ui-card-media-content class="demo-card__media-content--with-title">
+                </ui-card-media-content>
+              </ui-card-media>
+            </ui-card-content>
+          </ui-card>
+        </ui-grid-cell>
+      </ui-grid>
+    </div>
   </div>
 </template>
 

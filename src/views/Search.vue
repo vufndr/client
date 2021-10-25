@@ -1,30 +1,25 @@
 <template>
   <div class="flex">
     <div class="flex-none p-4 w-1/5">
-      <ui-drawer>
+      <ui-drawer v-for="(facet, name) in facets" :key="name">
         <ui-drawer-header>
-          <ui-drawer-title>Title</ui-drawer-title>
-          <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
+          <ui-drawer-title>{{ name }}</ui-drawer-title>
         </ui-drawer-header>
         <ui-drawer-content>
-          <ui-nav>
-            <ui-nav-item active>Activated link</ui-nav-item>
-            <ui-nav-item>Unactivated link</ui-nav-item>
-          </ui-nav>
+          <ui-list role="group">
+            <ui-item v-for="(count, type) in facet" :key="type">
+              <template #before="{ }">
+                <ui-checkbox
+                  v-model="checkedValues"
+                  :value="type"
+                ></ui-checkbox>
+              </template>
+              <ui-item-text-content>{{ type }}</ui-item-text-content>
+              <ui-item-last-content>{{ count }}</ui-item-last-content>
+            </ui-item>
+          </ui-list>
         </ui-drawer-content>
       </ui-drawer>
-      <ui-list role="group" v-for="(facet, name) in facets" :key="name">
-        <ui-item v-for="(count, type) in facet" :key="type">
-          <template #before="{ }">
-            <ui-checkbox
-              v-model="checkedValues"
-              :value="type"
-            ></ui-checkbox>
-          </template>
-          <ui-item-text-content>{{ type }}</ui-item-text-content>
-          <ui-item-last-content>{{ count }}</ui-item-last-content>
-        </ui-item>
-      </ui-list>
     </div>
     <div class="flex-1 p-4">
       <ui-grid>

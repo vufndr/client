@@ -2,8 +2,7 @@
   <div>
   <ui-list role="group">
     <template v-for="(item, index) in items">
-      <ui-item-divider v-if="item === '-'" :key="index"></ui-item-divider>
-      <ui-item v-else :key="index">
+      <ui-item :key="index">
         <ui-item-text-content>{{ item.text }}</ui-item-text-content>
         <ui-item-last-content>
           <ui-checkbox

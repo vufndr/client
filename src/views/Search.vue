@@ -10,7 +10,7 @@
             <ui-item v-for="(count, type) in facet" :key="type">
               <template #before="{ }">
                 <ui-checkbox
-                  v-model="checkedValues"
+                  v-model="resolutions"
                   :value="type"
                 ></ui-checkbox>
               </template>
@@ -47,13 +47,7 @@ export default {
     return {
       facets: [],
       images: [],
-      items: [
-        {
-          text: '800x600',
-          value: '800x600',
-        },
-      ],
-      checkedValues: [],
+      resolutions: [],
     }
   },
   mounted() {
@@ -61,7 +55,7 @@ export default {
   },
   methods: {
     search() {
-      axios.get('/api/search', { params: { } })
+      axios.get('/api/search', { params: { resolutions } })
         .then((response) => {
           this.facets = response.data.facets;
           this.images = response.data.data;

@@ -12,6 +12,7 @@
                 <ui-checkbox
                   v-model="resolutions"
                   :value="type"
+                  @change="search()"
                 ></ui-checkbox>
               </template>
               <ui-item-text-content>{{ type }}</ui-item-text-content>

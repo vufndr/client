@@ -12,7 +12,7 @@
                 <ui-checkbox
                   v-model="resolutions"
                   :value="type"
-                  @change="search()"
+                  @change="debounceSearch()"
                 ></ui-checkbox>
               </template>
               <ui-item-text-content>{{ type }}</ui-item-text-content>
@@ -41,6 +41,7 @@
 
 <script>
 import axios from 'axios';
+import _ from 'lodash';
 
 export default {
   name: 'Search',
@@ -62,6 +63,7 @@ export default {
           this.images = response.data.data;
         });
     },
+    debounceSearch: _.debounce(this.search, 2000),
   }
 }
 </script>

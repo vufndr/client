@@ -52,6 +52,9 @@ export default {
       resolutions: [],
     }
   },
+  created() {
+    this.debounceSearch = _.debounce(this.search, 2000);
+  },
   mounted() {
     this.search();
   },
@@ -63,9 +66,6 @@ export default {
           this.images = response.data.data;
         });
     },
-    debounceSearch: _.debounce(() => {
-      this.search();
-    }, 2000),
   }
 }
 </script>

@@ -1,18 +1,15 @@
 <template>
   <div>
   <ui-list role="group">
-    <template v-for="(item, index) in items">
-      <ui-item :key="index">
-        <ui-item-text-content>{{ item.text }}</ui-item-text-content>
-        <ui-item-last-content>
-          <ui-checkbox
-            v-model="checkedValues"
-            :value="item.value"
-            @click.native.stop
-          ></ui-checkbox>
-        </ui-item-last-content>
-      </ui-item>
-    </template>
+    <ui-item v-for="item in items" :key="item">
+      <ui-item-text-content>{{ item.text }}</ui-item-text-content>
+      <ui-item-last-content>
+        <ui-checkbox
+          v-model="checkedValues"
+          :value="item.value"
+        ></ui-checkbox>
+      </ui-item-last-content>
+    </ui-item>
   </ui-list>
     <ui-grid>
       <ui-grid-cell columns="2" v-for="image in images" :key="image">

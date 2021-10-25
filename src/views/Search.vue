@@ -3,7 +3,7 @@
     <div class="flex-none p-4 w-1/5">
       <ui-list role="group" v-for="(facet, name) in facets" :key="name">
         <ui-item v-for="(count, type) in facet" :key="type">
-          <template #before="{ iconClass }">
+          <template #before="{ }">
             <ui-checkbox
               v-model="checkedValues"
               :value="type"

@@ -1,8 +1,8 @@
 <template>
   <div class="flex">
-    <div class="flex-none p-4 w-1/3">
-      <ui-list role="group">
-        <ui-item v-for="item in items" :key="item">
+    <div class="flex-none p-4 w-1/5">
+      <ui-list role="group" v-for="(facet, name) in facets" :key="name">
+        <ui-item v-for="(count, type) in facet" :key="type">
           <ui-item-text-content>{{ item.text }}</ui-item-text-content>
           <ui-item-last-content>
             <ui-checkbox

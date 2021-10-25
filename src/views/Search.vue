@@ -1,6 +1,18 @@
 <template>
   <div class="flex">
     <div class="flex-none p-4 w-1/5">
+      <ui-drawer>
+        <ui-drawer-header>
+          <ui-drawer-title>Title</ui-drawer-title>
+          <ui-drawer-subtitle>Subtitle</ui-drawer-subtitle>
+        </ui-drawer-header>
+        <ui-drawer-content>
+          <ui-nav>
+            <ui-nav-item active>Activated link</ui-nav-item>
+            <ui-nav-item>Unactivated link</ui-nav-item>
+          </ui-nav>
+        </ui-drawer-content>
+      </ui-drawer>
       <ui-list role="group" v-for="(facet, name) in facets" :key="name">
         <ui-item v-for="(count, type) in facet" :key="type">
           <template #before="{ }">

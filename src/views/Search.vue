@@ -63,7 +63,9 @@ export default {
           this.images = response.data.data;
         });
     },
-    debounceSearch: _.debounce(this.search, 2000),
+    debounceSearch: _.debounce(() => {
+      this.search();
+    }, 2000),
   }
 }
 </script>

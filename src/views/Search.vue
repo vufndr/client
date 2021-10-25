@@ -3,18 +3,14 @@
     <div class="flex-none p-4 w-1/5">
       <ui-list role="group" v-for="(facet, name) in facets" :key="name">
         <ui-item v-for="(count, type) in facet" :key="type">
-          <ui-item-text-content>
-            <ui-badge state="success">
-              {{ type }}
-              <template #badge>{{ count }}</template>
-            </ui-badge>
-          </ui-item-text-content>
-          <ui-item-last-content>
+          <template #before="{ iconClass }">
             <ui-checkbox
               v-model="checkedValues"
               :value="type"
             ></ui-checkbox>
-          </ui-item-last-content>
+          </template>
+          <ui-item-text-content>{{ type }}</ui-item-text-content>
+          <ui-item-last-content>{{ count }}</ui-item-last-content>
         </ui-item>
       </ui-list>
     </div>

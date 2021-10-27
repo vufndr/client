@@ -23,7 +23,8 @@
       </ui-drawer>
     </div>
     <div class="flex-1 p-4">
-      <ui-grid>
+      <ui-spinner active v-if="loading"></ui-spinner>
+      <ui-grid v-else>
         <ui-grid-cell columns="2" v-for="image in images" :key="image">
           <ui-card>
             <ui-card-content>
@@ -47,23 +48,26 @@ export default {
   name: 'Search',
   data() {
     return {
+      loading: false,
       facets: [],
       images: [],
       resolutions: [],
     }
   },
   created() {
-    this.debounceSearch = _.debounce(this.search, 2000);
+    this.debounceSearch = _.debounce(this.search, 200);
   },
   mounted() {
     this.search();
   },
   methods: {
     search() {
+      this.loading = true;
       axios.get('/api/search', { params: { resolutions: this.resolutions } })
         .then((response) => {
           this.facets = response.data.facets;
           this.images = response.data.data;
+          this.loading = false;
         });
     },
   }

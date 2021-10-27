@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <div class="flex-none p-4 w-1/5">
+    <div class="flex-none p-4">
       <ui-drawer v-for="(facet, name) in facets" :key="name">
         <ui-drawer-header>
           <ui-drawer-title>{{ upperFirst(name) }}</ui-drawer-title>
@@ -25,7 +25,7 @@
     <div class="flex-1 p-4">
       <ui-spinner active v-if="loading"></ui-spinner>
       <ui-grid v-else>
-        <ui-grid-cell columns="2" v-for="image in images" :key="image">
+        <ui-grid-cell columns="3" v-for="image in images" :key="image">
           <ui-card>
             <ui-card-content>
               <ui-card-media square class="demo-card__media" v-bind:style="{ 'background-image': 'url(' + image.thumbnail_url + ')' }">

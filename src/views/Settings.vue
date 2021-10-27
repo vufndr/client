@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <div class="flex-none p-4 w-1/5">
+    <div class="flex-none p-4">
       <ui-drawer>
         <ui-drawer-header>
           <ui-drawer-title>Settings</ui-drawer-title>

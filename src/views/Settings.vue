@@ -1,19 +1,26 @@
 <template>
   <div class="flex">
     <div class="flex-none p-4 w-1/3">
-      <ui-list v-model="selectedIndex" single-selection>
-        <ui-item v-for="(item, index) in items" :key="index">
-          <ui-item-first-content>
-            <ui-icon v-if="item.icon.startsWith('mdi')">
-              <Icon :icon="item.icon" />
-            </ui-icon>
-            <ui-icon v-else>
-              {{ item.icon }}
-            </ui-icon>
-          </ui-item-first-content>
-          <ui-item-text-content>{{ item.text }}</ui-item-text-content>
-        </ui-item>
-      </ui-list>
+      <ui-drawer>
+        <ui-drawer-header>
+          <ui-drawer-title>Settings</ui-drawer-title>
+        </ui-drawer-header>
+        <ui-drawer-content>
+          <ui-list v-model="selectedIndex" single-selection>
+            <ui-item v-for="(item, index) in items" :key="index">
+              <ui-item-first-content>
+                <ui-icon v-if="item.icon.startsWith('mdi')">
+                  <Icon :icon="item.icon" />
+                </ui-icon>
+                <ui-icon v-else>
+                  {{ item.icon }}
+                </ui-icon>
+              </ui-item-first-content>
+              <ui-item-text-content>{{ item.text }}</ui-item-text-content>
+            </ui-item>
+          </ui-list>
+        </ui-drawer-content>
+      </ui-drawer>
     </div>
     <div class="flex-1 p-4" v-if="selectedItem">
       <div v-if="selectedItem.text === 'Email'">

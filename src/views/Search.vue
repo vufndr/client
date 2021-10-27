@@ -41,8 +41,11 @@
 </template>
 
 <script>
+import _ from 'lodash';
 import axios from 'axios';
 import qs from 'qs';
+
+Object.defineProperty(Vue.prototype, '_', { value: _ });
 
 export default {
   name: 'Search',
@@ -63,7 +66,7 @@ export default {
       axios.get('/api/search', { params: { facets: this.filters }, paramsSerializer: params => { return qs.stringify(params) } })
         .then((response) => {
           if (this.filters.length === 0) {
-            this.filters = this._.mapValues(response.data.facets, () => { return []; });
+            this.filters = _.mapValues(response.data.facets, () => { return []; });
           }
           this.facets = response.data.facets;
           this.images = response.data.data;

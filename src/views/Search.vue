@@ -65,7 +65,7 @@ export default {
         .then((response) => {
           this.facets = response.data.facets;
           this.images = response.data.data;
-          this.filters = _.mapValues(this.facets).map(() => { return []; });
+          this.filters = _.mapValues(this.facets, () => { return []; });
           this.loading = false;
         });
     },

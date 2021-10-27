@@ -6,11 +6,11 @@
           <ui-drawer-title>{{ upperFirst(name) }}</ui-drawer-title>
         </ui-drawer-header>
         <ui-drawer-content>
-          <div class="p-2">
+          <div class="ml-2 mr-2">
             <ui-textfield fullwidth outlined with-leading-icon>
               Search
-              <template #before="{ }">
-                  <ui-icon>search</ui-icon>
+              <template #before>
+                <ui-textfield-icon>search</ui-textfield-icon>
               </template>
             </ui-textfield>
           </div>

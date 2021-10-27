@@ -6,11 +6,11 @@
           <ui-drawer-title>{{ upperFirst(name) }}</ui-drawer-title>
         </ui-drawer-header>
         <ui-drawer-content>
-          <div class="ml-2 mr-2">
+          <div class="mt-2 ml-2 mr-2">
             <ui-textfield fullwidth outlined with-leading-icon>
               Search
               <template #before>
-                <ui-textfield-icon>search</ui-textfield-icon>
+                <ui-textfield-icon v-model="searches[name]">search</ui-textfield-icon>
               </template>
             </ui-textfield>
           </div>
@@ -58,9 +58,10 @@ export default {
   data() {
     return {
       loading: true,
+      filters: [],
+      searches: [],
       facets: [],
       images: [],
-      filters: [],
     }
   },
   mounted() {
@@ -69,10 +70,16 @@ export default {
   methods: {
     search() {
       this.loading = true;
-      axios.get('/api/search', { params: { facets: this.filters }, paramsSerializer: params => { return qs.stringify(params) } })
+      axios.get('/api/search', { params: {
+        facets: this.filters,
+        searches: this.searches,
+      }, paramsSerializer: params => { return qs.stringify(params) } })
         .then((response) => {
           if (this.filters.length === 0) {
             this.filters = _.mapValues(response.data.facets, () => { return []; });
+          }
+          if (this.searches.length === 0) {
+            this.searches = _.mapValues(response.data.facets, () => { return ''; });
           }
           this.facets = response.data.facets;
           this.images = response.data.data;

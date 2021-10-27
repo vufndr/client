@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createApp } from 'vue'
+import VueLodash from 'vue-lodash'
 import lodash from 'lodash'
 import VueAxios from 'vue-axios'
 import BalmUI from 'balm-ui';

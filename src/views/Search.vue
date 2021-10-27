@@ -78,9 +78,6 @@ export default {
           if (this.filters.length === 0) {
             this.filters = _.mapValues(response.data.facets, () => { return []; });
           }
-          if (this.searches.length === 0) {
-            this.searches = _.mapValues(response.data.facets, () => { return ''; });
-          }
           this.facets = response.data.facets;
           this.images = response.data.data;
           this.loading = false;

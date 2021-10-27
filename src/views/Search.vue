@@ -6,12 +6,14 @@
           <ui-drawer-title>{{ upperFirst(name) }}</ui-drawer-title>
         </ui-drawer-header>
         <ui-drawer-content>
-          <ui-textfield fullwidth outlined with-leading-icon class="p-2">
-            Search
-            <template #before="{ }">
-                <ui-icon>search</ui-icon>
-            </template>
-          </ui-textfield>
+          <div class="p-2">
+            <ui-textfield fullwidth outlined with-leading-icon>
+              Search
+              <template #before="{ }">
+                  <ui-icon>search</ui-icon>
+              </template>
+            </ui-textfield>
+          </div>
           <ui-list role="group" dense>
             <ui-item v-for="(count, type) in facet" :key="type">
               <template #before="{ }">

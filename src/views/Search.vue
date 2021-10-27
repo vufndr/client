@@ -6,7 +6,7 @@
           <ui-drawer-title>{{ upperFirst(name) }}</ui-drawer-title>
         </ui-drawer-header>
         <ui-drawer-content>
-          <ui-list role="group">
+          <ui-list role="group" dense>
             <ui-item v-for="(count, type) in facet" :key="type">
               <template #before="{ }">
                 <ui-checkbox

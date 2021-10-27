@@ -10,7 +10,7 @@
             <ui-item v-for="(count, type) in facet" :key="type">
               <template #before="{ }">
                 <ui-checkbox
-                  v-model="filters.type"
+                  v-model="filters[type]"
                   :value="type"
                   @change="search()"
                 ></ui-checkbox>
@@ -50,7 +50,7 @@ export default {
       loading: true,
       facets: [],
       images: [],
-      filters: [],
+      filters: {},
     }
   },
   mounted() {

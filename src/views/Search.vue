@@ -42,6 +42,7 @@
 
 <script>
 import axios from 'axios';
+import qs from 'qs';
 
 export default {
   name: 'Search',
@@ -59,7 +60,7 @@ export default {
   methods: {
     search() {
       this.loading = true;
-      axios.get('/api/search', { params: { facets: this.filters } })
+      axios.get('/api/search', { params: { facets: this.filters }, paramsSerializer: params => { return qs.stringify(params) } })
         .then((response) => {
           this.facets = response.data.facets;
           this.images = response.data.data;

@@ -3,7 +3,7 @@
     <div class="flex-none p-4 w-1/5">
       <ui-drawer v-for="(facet, name) in facets" :key="name">
         <ui-drawer-header>
-          <ui-drawer-title>{{ _.upperFirst(name) }}</ui-drawer-title>
+          <ui-drawer-title>{{ upperFirst(name) }}</ui-drawer-title>
         </ui-drawer-header>
         <ui-drawer-content>
           <ui-list role="group">
@@ -55,11 +55,6 @@ export default {
       filters: [],
     }
   },
-  computed: {
-    _() {
-      return _;
-    }
-  },
   mounted() {
     this.search();
   },
@@ -75,6 +70,9 @@ export default {
           this.images = response.data.data;
           this.loading = false;
         });
+    },
+    upperFirst(s) {
+      return _.upperFirst(s);
     },
   }
 }

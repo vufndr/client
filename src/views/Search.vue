@@ -72,11 +72,12 @@ export default {
       this.loading = true;
       axios.get('/api/search', { params: {
         facets: this.filters,
-        searches: this.searches,
+        searches: _.omitBy(this.searches, _.isNil),
       }, paramsSerializer: params => { return qs.stringify(params) } })
         .then((response) => {
           if (this.filters.length === 0) {
             this.filters = _.mapValues(response.data.facets, () => { return []; });
+            this.searches = _.mapValues(response.data.facets, () => { return ''; });
           }
           this.facets = response.data.facets;
           this.images = response.data.data;

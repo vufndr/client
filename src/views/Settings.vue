@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <div class="flex-none p-4">
+    <div class="flex-none">
       <ui-drawer>
         <ui-drawer-header>
           <ui-drawer-title>Settings</ui-drawer-title>
@@ -22,7 +22,7 @@
         </ui-drawer-content>
       </ui-drawer>
     </div>
-    <div class="flex-1 p-4" v-if="selectedItem">
+    <div class="flex-1 p-2" v-if="selectedItem">
       <div v-if="selectedItem.text === 'Email'">
         <div class="w-full">
           <ui-textfield fullwidth v-model="email">

@@ -3,7 +3,7 @@
     <div class="flex-none p-4 w-1/5">
       <ui-drawer v-for="(facet, name) in facets" :key="name">
         <ui-drawer-header>
-          <ui-drawer-title>{{ _.startCase(name) }}</ui-drawer-title>
+          <ui-drawer-title>{{ _.upperFirst(name) }}</ui-drawer-title>
         </ui-drawer-header>
         <ui-drawer-content>
           <ui-list role="group">
@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import _ from 'lodash';
 import axios from 'axios';
 import qs from 'qs';
 
@@ -64,7 +63,7 @@ export default {
       axios.get('/api/search', { params: { facets: this.filters }, paramsSerializer: params => { return qs.stringify(params) } })
         .then((response) => {
           if (this.filters.length === 0) {
-            this.filters = _.mapValues(response.data.facets, () => { return []; });
+            this.filters = this._.mapValues(response.data.facets, () => { return []; });
           }
           this.facets = response.data.facets;
           this.images = response.data.data;

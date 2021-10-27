@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createApp } from 'vue'
+import lodash from 'lodash'
 import VueAxios from 'vue-axios'
 import BalmUI from 'balm-ui';
 import BalmUIPlus from 'balm-ui-plus';
@@ -30,6 +31,7 @@ createApp(App)
     .use(BalmUI)
     .use(BalmUIPlus)
     .use(VueAxios, axios)
+    .use(VueLodash, { lodash: lodash })
     .use(store)
     .use(router)
     .mount('#app');

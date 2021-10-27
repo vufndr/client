@@ -12,7 +12,7 @@
                 <ui-checkbox
                   v-model="resolutions"
                   :value="type"
-                  @change="debounceSearch()"
+                  @change="search()"
                 ></ui-checkbox>
               </template>
               <ui-item-text-content>{{ type }}</ui-item-text-content>
@@ -42,20 +42,16 @@
 
 <script>
 import axios from 'axios';
-import _ from 'lodash';
 
 export default {
   name: 'Search',
   data() {
     return {
-      loading: false,
+      loading: true,
       facets: [],
       images: [],
       resolutions: [],
     }
-  },
-  created() {
-    this.debounceSearch = _.debounce(this.search, 200);
   },
   mounted() {
     this.search();

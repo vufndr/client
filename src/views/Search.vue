@@ -45,8 +45,6 @@ import _ from 'lodash';
 import axios from 'axios';
 import qs from 'qs';
 
-Object.defineProperty(Vue.prototype, '_', { value: _ });
-
 export default {
   name: 'Search',
   data() {
@@ -55,6 +53,11 @@ export default {
       facets: [],
       images: [],
       filters: [],
+    }
+  },
+  computed: {
+    _() {
+      return _;
     }
   },
   mounted() {

@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import _ from 'lodash';
 import axios from 'axios';
 import qs from 'qs';
 
@@ -51,9 +52,7 @@ export default {
       loading: true,
       facets: [],
       images: [],
-      filters: {
-        resolution: [],
-      },
+      filters: [],
     }
   },
   mounted() {
@@ -66,6 +65,7 @@ export default {
         .then((response) => {
           this.facets = response.data.facets;
           this.images = response.data.data;
+          this.filters = _.mapValues(this.facets).map((value) => { return [] });
           this.loading = false;
         });
     },

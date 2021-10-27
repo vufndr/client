@@ -51,7 +51,9 @@ export default {
       loading: true,
       facets: [],
       images: [],
-      filters: {},
+      filters: {
+        resolution: [],
+      },
     }
   },
   mounted() {

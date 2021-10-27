@@ -3,7 +3,7 @@
     <div class="flex-none p-4 w-1/5">
       <ui-drawer v-for="(facet, name) in facets" :key="name">
         <ui-drawer-header>
-          <ui-drawer-title class="capitalize">{{ name }}</ui-drawer-title>
+          <ui-drawer-title>{{ _.startCase(name) }}</ui-drawer-title>
         </ui-drawer-header>
         <ui-drawer-content>
           <ui-list role="group">

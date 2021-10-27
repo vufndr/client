@@ -33,10 +33,13 @@
           <ui-button raised icon="update">Update</ui-button>
         </div>
       </div>
-      <div v-if="selectedItem.text === 'Dropbox'">
+      <div v-if="selectedItem.text === 'Dropbox' && authorizationUrl">
         <ui-alert state="info">No Dropbox Sync Configured</ui-alert>
 
         <ui-button raised icon="sync" @click="redirectToDropbox()">Enable Sync</ui-button>
+      </div>
+      <div v-if="selectedItem.text === 'Dropbox' && !authorizationUrl">
+        <ui-button raised icon="sync" @click="unlinkDropbox()">Disable Sync</ui-button>
       </div>
     </div>
   </div>
@@ -81,11 +84,13 @@ export default {
       axios.get('/api/oauth/dropbox')
         .then((response) => {
           this.authorizationUrl = response.data.authorization_url;
-          console.log(this.authorizationUrl);
         });
     },
     redirectToDropbox() {
       window.location.href = this.authorizationUrl;
+    },
+    unlinkDropbox() {
+      //
     },
   }
 }

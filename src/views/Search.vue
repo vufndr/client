@@ -72,7 +72,7 @@ export default {
       this.loading = true;
       axios.get('/api/search', { params: {
         facets: this.filters,
-        searches: _.omitBy(this.searches, _.isNil),
+        searches: _.omitBy(this.searches, (value) => _.isNil(value) || _.isEmpty(value) && !_.isNumber(value) || _.isNaN(value)),
       }, paramsSerializer: params => { return qs.stringify(params) } })
         .then((response) => {
           if (this.filters.length === 0) {

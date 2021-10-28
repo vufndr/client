@@ -7,7 +7,7 @@
         </ui-drawer-header>
         <ui-drawer-content>
           <div class="mt-2 ml-2 mr-2">
-            <ui-textfield fullwidth outlined with-leading-icon v-model="searches[name]">
+            <ui-textfield fullwidth outlined with-leading-icon v-model="searches[name]" @change="search()">
               Search
               <template #before>
                 <ui-textfield-icon>search</ui-textfield-icon>

@@ -36,8 +36,8 @@
         <ui-grid-cell columns="3" v-for="image in images" :key="image">
           <ui-card>
             <ui-card-content>
-              <ui-card-media square class="demo-card__media" v-bind:style="{ 'background-image': 'url(' + image.thumbnail_url + ')' }">
-                <ui-card-media-content class="demo-card__media-content--with-title">
+              <ui-card-media square class="card__media" v-bind:style="{ 'background-image': 'url(' + image.thumbnail_url + ')' }">
+                <ui-card-media-content class="card__media-content--with-title">
                 </ui-card-media-content>
               </ui-card-media>
             </ui-card-content>
@@ -91,14 +91,18 @@ export default {
 }
 </script>
 
-<style>
-.demo-card__media-content--with-title {
+<style scoped>
+.mdc-drawer__header {
+  min-height: 0;
+}
+
+.card__media-content--with-title {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
 
-.demo-card__media-title {
+.card__media-title {
   padding: 8px 16px;
   background-image: linear-gradient(
     to bottom,

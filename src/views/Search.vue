@@ -66,7 +66,7 @@ export default {
     }
   },
   created() {
-    this.$watch(() => this.filters, (value) => {
+    this.$watch(() => this.filters, () => {
       this.dirty = true;
     });
   },

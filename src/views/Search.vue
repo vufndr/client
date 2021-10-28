@@ -57,6 +57,7 @@ export default {
   name: 'Search',
   data() {
     return {
+      dirty: true,
       loading: true,
       filters: [],
       searches: [],
@@ -64,12 +65,20 @@ export default {
       images: [],
     }
   },
+  created() {
+    this.$watch(() => this.filters, (value) => {
+      this.dirty = true;
+    });
+  },
   mounted() {
     this.search();
   },
   methods: {
     search() {
-      this.loading = true;
+      if (this.dirty) {
+        this.dirty = false;
+        this.loading = true;
+      }
       axios.get('/api/search', { params: {
         facets: this.filters,
         searches: _.omitBy(this.searches, (value) => _.isNil(value) || _.isEmpty(value) && !_.isNumber(value) || _.isNaN(value)),

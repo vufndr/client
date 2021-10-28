@@ -76,7 +76,6 @@ export default {
   methods: {
     search() {
       if (this.dirty) {
-        this.dirty = false;
         this.loading = true;
       }
       axios.get('/api/search', { params: {
@@ -89,8 +88,11 @@ export default {
             this.searches = _.mapValues(response.data.facets, () => { return ''; });
           }
           this.facets = response.data.facets;
-          this.images = response.data.data;
+          if (this.dirty) {
+            this.images = response.data.data;
+          }
           this.loading = false;
+          this.dirty = false;
         });
     },
     upperFirst(s) {

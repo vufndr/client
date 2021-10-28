@@ -31,7 +31,7 @@
       </ui-drawer>
     </div>
     <div class="flex-1 p-2">
-      <ui-spinner active v-if="loading"></ui-spinner>
+      <ui-spinner active v-if="loading && !images.length"></ui-spinner>
       <ui-grid v-else>
         <ui-grid-cell columns="3" v-for="image in images" :key="image">
           <ui-card>
@@ -65,19 +65,12 @@ export default {
       images: [],
     }
   },
-  created() {
-    this.$watch(() => this.filters, () => {
-      this.dirty = true;
-    });
-  },
   mounted() {
     this.search();
   },
   methods: {
     search() {
-      if (this.dirty) {
-        this.loading = true;
-      }
+      this.loading = true;
       axios.get('/api/search', { params: {
         facets: this.filters,
         searches: _.omitBy(this.searches, (value) => _.isNil(value) || _.isEmpty(value) && !_.isNumber(value) || _.isNaN(value)),
@@ -88,11 +81,8 @@ export default {
             this.searches = _.mapValues(response.data.facets, () => { return ''; });
           }
           this.facets = response.data.facets;
-          if (this.dirty) {
-            this.images = response.data.data;
-          }
+          this.images = response.data.data;
           this.loading = false;
-          this.dirty = false;
         });
     },
     upperFirst(s) {

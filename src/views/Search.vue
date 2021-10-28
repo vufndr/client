@@ -81,7 +81,9 @@ export default {
             this.searches = _.mapValues(response.data.facets, () => { return ''; });
           }
           this.facets = response.data.facets;
-          this.images = response.data.data;
+          if (!_.isEqual(_.map(this.images, 'id'), _.map(response.data.data, 'id'))) {
+            this.images = response.data.data;
+          }
           this.loading = false;
         });
     },

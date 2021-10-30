@@ -11,12 +11,10 @@
     "axios": "^0.21.1",
     "balm-ui": "^9.37.2",
     "core-js": "^3.6.5",
-    "lightgallery": "^2.3.0",
     "lodash": "^4.17.21",
     "qs": "^6.10.1",
     "vue": "^3.0.0",
     "vue-axios": "^3.2.5",
-    "vue-lodash": "^2.1.2",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0",
     "vuex-persistedstate": "^4.1.0"

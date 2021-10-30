@@ -32,15 +32,28 @@
     </div>
     <div class="flex-1 p-2">
       <ui-spinner active v-if="loading && !images.length"></ui-spinner>
-      <div v-else>
-        <lightgallery
-          :settings="{ speed: 500, plugins: plugins }"
-        >
-          <a :href="image.preview_url" v-for="image in images" :key="image">
-            <img :src="image.thumbnail_url" />
-          </a>
-        </lightgallery>
-      </div>
+      <ui-grid v-else>
+        <ui-grid-cell columns="3" v-for="(image, index) in images" :key="image">
+          <ui-card @click="open[index] = true">
+            <ui-card-content>
+              <ui-card-media square class="card__media" v-bind:style="{ 'background-image': 'url(' + image.thumbnail_url + ')' }">
+                <ui-card-media-content class="card__media-content--with-title">
+                </ui-card-media-content>
+              </ui-card-media>
+            </ui-card-content>
+          </ui-card>
+          <ui-dialog maskClosable v-model="open[index]">
+            <ui-card>
+              <ui-card-content>
+                <ui-card-media square class="card__media" v-bind:style="{ 'background-image': 'url(' + image.preview_url + ')' }">
+                  <ui-card-media-content class="card__media-content--with-title">
+                  </ui-card-media-content>
+                </ui-card-media>
+              </ui-card-content>
+            </ui-card>
+          </ui-dialog>
+        </ui-grid-cell>
+      </ui-grid>
     </div>
   </div>
 </template>
@@ -102,7 +115,27 @@ export default {
 </script>
 
 <style scoped>
+@import 'lightgallery/css/lightgallery.css';
+@import 'lightgallery/css/lg-thumbnail.css';
+@import 'lightgallery/css/lg-zoom.css';
+
 .mdc-drawer__header {
   min-height: 0;
+}
+
+.card__media-content--with-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.card__media-title {
+  padding: 8px 16px;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  color: white;
 }
 </style>

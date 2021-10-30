@@ -43,14 +43,7 @@
             </ui-card-content>
           </ui-card>
           <ui-dialog maskClosable v-model="open[index]">
-            <ui-card>
-              <ui-card-content>
-                <ui-card-media square class="card__media" v-bind:style="{ 'background-image': 'url(' + image.preview_url + ')' }">
-                  <ui-card-media-content class="card__media-content--with-title">
-                  </ui-card-media-content>
-                </ui-card-media>
-              </ui-card-content>
-            </ui-card>
+            <img :src="image.preview_url" />
           </ui-dialog>
         </ui-grid-cell>
       </ui-grid>
@@ -109,14 +102,6 @@ export default {
 <style scoped>
 .mdc-drawer__header {
   min-height: 0;
-}
-
-.mdc-dialog__container {
-  width: 100%;
-}
-
-.mdc-dialog__surface {
-  width: 100%;
 }
 
 .card__media-content--with-title {

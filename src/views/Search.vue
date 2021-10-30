@@ -51,7 +51,6 @@
                 </ui-card-media>
               </ui-card-content>
             </ui-card>
-            <ui-dialog-actions></ui-dialog-actions>
           </ui-dialog>
         </ui-grid-cell>
       </ui-grid>

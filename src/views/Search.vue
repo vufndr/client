@@ -101,9 +101,7 @@ export default {
 </script>
 
 <style scoped>
-@import 'lightgallery/css/lightgallery.css';
-@import 'lightgallery/css/lg-thumbnail.css';
-@import 'lightgallery/css/lg-zoom.css';
+@import 'lightgallery/css/lightgallery-bundle.css';
 
 .mdc-drawer__header {
   min-height: 0;

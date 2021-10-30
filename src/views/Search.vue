@@ -115,6 +115,10 @@ export default {
   width: 100%;
 }
 
+.mdc-dialog__surface {
+  width: 100%;
+}
+
 .card__media-content--with-title {
   display: flex;
   flex-direction: column;

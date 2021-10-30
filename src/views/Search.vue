@@ -33,8 +33,8 @@
     <div class="flex-1 p-2">
       <ui-spinner active v-if="loading && !images.length"></ui-spinner>
       <ui-grid v-else>
-        <ui-grid-cell columns="3" v-for="image in images" :key="image">
-          <ui-card>
+        <ui-grid-cell columns="3" v-for="(image, index) in images" :key="image">
+          <ui-card @click="open[index] = true">
             <ui-card-content>
               <ui-card-media square class="card__media" v-bind:style="{ 'background-image': 'url(' + image.thumbnail_url + ')' }">
                 <ui-card-media-content class="card__media-content--with-title">
@@ -42,6 +42,17 @@
               </ui-card-media>
             </ui-card-content>
           </ui-card>
+          <ui-dialog v-model="open[index]">
+            <ui-card>
+              <ui-card-content>
+                <ui-card-media square class="card__media" v-bind:style="{ 'background-image': 'url(' + image.thumbnail_url + ')' }">
+                  <ui-card-media-content class="card__media-content--with-title">
+                  </ui-card-media-content>
+                </ui-card-media>
+              </ui-card-content>
+            </ui-card>
+            <ui-dialog-actions></ui-dialog-actions>
+          </ui-dialog>
         </ui-grid-cell>
       </ui-grid>
     </div>
@@ -63,6 +74,7 @@ export default {
       searches: [],
       facets: [],
       images: [],
+      open: [],
     }
   },
   mounted() {
@@ -83,6 +95,7 @@ export default {
           this.facets = response.data.facets;
           if (!_.isEqual(_.map(this.images, 'id'), _.map(response.data.data, 'id'))) {
             this.images = response.data.data;
+            this.open = _.mapValues(response.data.data, () => { return false; });
           }
           this.loading = false;
         });

@@ -16,7 +16,7 @@
           </div>
           <ui-list role="group" dense>
             <ui-item v-for="(count, type) in facet" :key="type">
-              <template #before="{ }">
+              <template #before>
                 <ui-checkbox
                   v-model="filters[name]"
                   :value="type"
@@ -63,18 +63,10 @@ import _ from 'lodash';
 import axios from 'axios';
 import qs from 'qs';
 
-import Lightgallery from 'lightgallery/vue';
-import lgThumbnail from 'lightgallery/plugins/thumbnail';
-import lgZoom from 'lightgallery/plugins/zoom';
-
 export default {
   name: 'Search',
-  components: {
-    Lightgallery,
-  },
   data() {
     return {
-      plugins: [lgThumbnail, lgZoom],
       dirty: true,
       loading: true,
       filters: [],
@@ -115,10 +107,6 @@ export default {
 </script>
 
 <style scoped>
-@import 'lightgallery/css/lightgallery.css';
-@import 'lightgallery/css/lg-thumbnail.css';
-@import 'lightgallery/css/lg-zoom.css';
-
 .mdc-drawer__header {
   min-height: 0;
 }

@@ -32,14 +32,15 @@
     </div>
     <div class="flex-1 p-2">
       <ui-spinner active v-if="loading && !images.length"></ui-spinner>
-      <lightgallery
-        :settings="{ speed: 500, plugins: plugins }"
-        v-else>
-      >
-        <a :href="image.preview_url" v-for="image in images" :key="image">
-          <img :src="image.thumbnail_url" />
-        </a>
-      </lightgallery>
+      <div v-else>
+        <lightgallery
+          :settings="{ speed: 500, plugins: plugins }"
+        >
+          <a :href="image.preview_url" v-for="image in images" :key="image">
+            <img :src="image.thumbnail_url" />
+          </a>
+        </lightgallery>
+      </div>
     </div>
   </div>
 </template>

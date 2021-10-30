@@ -37,7 +37,7 @@
         v-else>
       >
         <a :href="image.preview_url" v-for="image in images" :key="image">
-          <img alt=".." :src="image.thumbnail_url" />
+          <img :src="image.thumbnail_url" />
         </a>
       </lightgallery>
     </div>

@@ -21,6 +21,14 @@
           <ui-drawer-title>{{ upperFirst(name) }}</ui-drawer-title>
         </ui-drawer-header>
         <ui-drawer-content>
+          <div class="mt-2 ml-2 mr-2">
+            <ui-textfield fullwidth outlined with-leading-icon v-model="searches[name]" @input="search()">
+              Search {{ upperFirst(name) }}
+              <template #before>
+                <ui-textfield-icon>search</ui-textfield-icon>
+              </template>
+            </ui-textfield>
+          </div>
           <ui-list role="group" dense>
             <ui-item v-for="(count, type) in facet" :key="type">
               <template #before>
@@ -34,14 +42,6 @@
               <ui-item-last-content>{{ count }}</ui-item-last-content>
             </ui-item>
           </ui-list>
-          <div class="mt-2 ml-2 mr-2">
-            <ui-textfield fullwidth outlined with-leading-icon v-model="searches[name]" @input="search()">
-              Search {{ upperFirst(name) }}
-              <template #before>
-                <ui-textfield-icon>search</ui-textfield-icon>
-              </template>
-            </ui-textfield>
-          </div>
         </ui-drawer-content>
       </ui-drawer>
     </div>

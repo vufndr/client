@@ -1,6 +1,21 @@
 <template>
   <div class="flex">
     <div class="flex-none">
+      <ui-drawer>
+        <ui-drawer-header>
+          <ui-drawer-title>Search</ui-drawer-title>
+        </ui-drawer-header>
+        <ui-drawer-content>
+          <div class="mt-2 ml-2 mr-2">
+            <ui-textfield fullwidth outlined with-leading-icon v-model="query" @input="search()">
+              Keywords
+              <template #before>
+                <ui-textfield-icon>search</ui-textfield-icon>
+              </template>
+            </ui-textfield>
+          </div>
+        </ui-drawer-content>
+      </ui-drawer>
       <ui-drawer v-for="(facet, name) in facets" :key="name">
         <ui-drawer-header>
           <ui-drawer-title>{{ upperFirst(name) }}</ui-drawer-title>
@@ -67,6 +82,7 @@ export default {
       facets: [],
       images: [],
       open: [],
+      query: '',
     }
   },
   mounted() {
@@ -76,6 +92,7 @@ export default {
     search() {
       this.loading = true;
       axios.get('/api/search', { params: {
+        query: this.query,
         facets: this.filters,
         searches: _.omitBy(this.searches, (value) => _.isNil(value) || _.isEmpty(value) && !_.isNumber(value) || _.isNaN(value)),
       }, paramsSerializer: params => { return qs.stringify(params) } })

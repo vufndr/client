@@ -90,7 +90,7 @@ export default {
       window.location.href = this.authorizationUrl;
     },
     unlinkDropbox() {
-      //
+      axios.delete('/api/oauth/dropbox');
     },
   }
 }

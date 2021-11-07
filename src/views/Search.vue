@@ -68,7 +68,7 @@
           :total="total"
           show-total
           position="center"
-          @change="search()"
+          @input="search()"
         ></ui-pagination>
       </div>
     </div>

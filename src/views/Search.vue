@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
     <div class="flex-none">
-      <ui-drawer>
+      <ui-drawer viewportHeight="false">
         <ui-drawer-header>
           <ui-drawer-title>Search</ui-drawer-title>
         </ui-drawer-header>

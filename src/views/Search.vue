@@ -68,7 +68,7 @@
           :total="total"
           show-total
           position="center"
-          @update="search()"
+          v-on:update:modelValue="search()"
         ></ui-pagination>
       </div>
     </div>

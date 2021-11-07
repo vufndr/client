@@ -47,21 +47,29 @@
     </div>
     <div class="flex-1 p-2">
       <ui-spinner active v-if="loading && !images.length"></ui-spinner>
-      <ui-grid v-else>
-        <ui-grid-cell columns="3" v-for="(image, index) in images" :key="image">
-          <ui-card @click="open[index] = true">
-            <ui-card-content>
-              <ui-card-media square class="card__media" v-bind:style="{ 'background-image': 'url(' + image.thumbnail_url + ')' }">
-                <ui-card-media-content class="card__media-content--with-title">
-                </ui-card-media-content>
-              </ui-card-media>
-            </ui-card-content>
-          </ui-card>
-          <ui-dialog maskClosable v-model="open[index]">
-            <img :src="image.preview_url" />
-          </ui-dialog>
-        </ui-grid-cell>
-      </ui-grid>
+      <div v-else>
+        <ui-grid>
+          <ui-grid-cell columns="3" v-for="(image, index) in images" :key="image">
+            <ui-card @click="open[index] = true">
+              <ui-card-content>
+                <ui-card-media square class="card__media" v-bind:style="{ 'background-image': 'url(' + image.thumbnail_url + ')' }">
+                  <ui-card-media-content class="card__media-content--with-title">
+                  </ui-card-media-content>
+                </ui-card-media>
+              </ui-card-content>
+            </ui-card>
+            <ui-dialog maskClosable v-model="open[index]">
+              <img :src="image.preview_url" />
+            </ui-dialog>
+          </ui-grid-cell>
+        </ui-grid>
+        <ui-pagination
+          v-model="page"
+          :total="total"
+          show-total
+          position="center"
+        ></ui-pagination>
+      </div>
     </div>
   </div>
 </template>
@@ -83,6 +91,8 @@ export default {
       images: [],
       open: [],
       query: '',
+      page: 1,
+      total: 0,
     }
   },
   mounted() {
@@ -106,6 +116,8 @@ export default {
             this.images = response.data.data;
             this.open = _.mapValues(response.data.data, () => { return false; });
           }
+          this.page = response.data.current_page;
+          this.total = response.data.total;
           this.loading = false;
         });
     },
